@@ -1,0 +1,5 @@
+spawn:
+  x:
+  z:
+time-delay: 3
+void: 35
