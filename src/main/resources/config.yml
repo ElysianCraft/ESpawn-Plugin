@@ -1,5 +1,9 @@
 spawn:
   x:
   z:
+  world-name: 'world'
 time-delay: 3
-void: 35
+void:
+  enabled: true
+  y: 35
+  world-name: 'world'

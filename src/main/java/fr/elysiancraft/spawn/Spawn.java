@@ -53,8 +53,10 @@ public final class Spawn extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (event.getPlayer().getWorld() != getServer().getWorld("world")) return;
-        if (Objects.requireNonNull(event.getTo()).getY() < (Integer) getConfig().get("void", 35)) {
+        if (getConfig().get("void.enabled", true).equals(false)) return;
+        if (event.getPlayer().getWorld() != getServer().getWorld((String) getConfig().get("void.world-name", "world"))) return;
+
+        if (Objects.requireNonNull(event.getTo()).getY() < (Integer) getConfig().get("void.y", 35)) {
             tpSpawnPlayer(event.getPlayer(), false);
             event.getPlayer().setFallDistance(0);
         }
@@ -75,7 +77,7 @@ public final class Spawn extends JavaPlugin implements Listener {
     public void tpSpawnPlayer(Player player, Boolean message) {
         double x = getConfig().getDouble("spawn.x");
         double z = getConfig().getDouble("spawn.z");
-        player.teleport(Objects.requireNonNull(Bukkit.getWorld("world")).getHighestBlockAt((int) x, (int) z).getLocation().add(0.5, 1, 0.5).setDirection(new Vector(1, 0, 0)));
+        player.teleport(Objects.requireNonNull(Bukkit.getWorld((String) Objects.requireNonNull(getConfig().get("spawn.world-name", "world")))).getHighestBlockAt((int) x, (int) z).getLocation().add(0.5, 1, 0.5).setDirection(new Vector(1, 0, 0)));
         if (message) player.sendMessage("§aVous avez ete teleporte au spawn.");
     }
 

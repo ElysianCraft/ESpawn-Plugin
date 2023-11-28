@@ -1,4 +1,4 @@
-name: elysian-spawn
+name: ESpawn
 version: '${version}'
 main: fr.elysiancraft.spawn.Spawn
 api-version: '1.20'
@@ -6,7 +6,15 @@ author: Cleboost
 commands:
   spawn:
     description: Téléporte le joueur au spawn
-    #permission: elysian.spawn
+    permission: elysian.spawn
   setspawn:
     description: Défini le spawn
-    #permission: elysian.setspawn
+    permission: elysian.setspawn
+
+permissions:
+    elysian.spawn:
+        description: Permet de se téléporter au spawn
+        default: true
+    elysian.setspawn:
+        description: Permet de définir le spawn
+        default: op
